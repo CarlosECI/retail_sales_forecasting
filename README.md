@@ -47,21 +47,21 @@ conda activate nombre_del_entorno
 - Para ejecutar `pipeline.py` se debe hacer desde la raiz del proyecto.
 - Se puede automatizar el pipeline haciendo uso de `cron`:
     - Abre el editor de cron:
-    '''bash
+    ```bash
     crontab -e
-    '''
+    ```
     - Añade esta línea:
-    '''bash
+    ```bash
     0 9 * * 4 [ $(date +\%d) -ge 25 ] && /ruta/a/python /ruta/a/pipeline.py >> /ruta/a/logs/pipeline.log 2>&1
-    '''
+    ```
     - Ejecuta
     - Verifica que cron está configurado correctamente, debe aparecer la línea que configuraste:
-    '''bash
+    ```bash
     crontab -l
-    '''
+    ```
 
     Para obtener tus rutas absolutas, ejecuta desde la terminal:
-    '''bash
+    ```bash
     # Ruta de Python en tu entorno conda
     which python
 
@@ -71,7 +71,7 @@ conda activate nombre_del_entorno
     # Crea la carpeta de logs si no existe
     mkdir -p logs
     realpath logs/pipeline.log
-    '''
+    ```
 
 ## Limitaciones
 El análisis realizado está limitado por los datos disponibles y por la estructura de los mismos, si bien el INE cuenta con gran cantidad de datos, no todos cuentan con valores suficientes para construir un modelo y/o unirlos con otros datos.
