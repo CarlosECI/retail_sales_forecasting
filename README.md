@@ -42,5 +42,31 @@ conda activate nombre_del_entorno
 '''
 3. Ejecutar los Notebooks en orden. En el primer notebook se descarga la data desde la API del INE con los datos necesarios y se agregan a data/raw -en caso de no tener esta carpeta se debe crear-.
 
+## Configurar pipeline automatizado
+- Cada script dentro del pipeline cumple una función. `extract.py` se encarga de la primera fase de extracción y limpieza de los datos, `train.py` se encarga de entrenar el modelo con los parámetros extraidos del notebook 03_modelado.ipynb. Por último `predict.py` hace las predicciones para el siguiente trimestre y las guarda en un csv dentro de `reports/`. Si alguno de los scripts llega a fallar, detiene la ejecución.
+- Para ejecutar `pipeline.py` se debe hacer desde la raiz del proyecto.
+- Se puede automatizar el pipeline haciendo uso de `cron`:
+    - Abre el editor de cron:
+    '''bash
+    crontab -e
+    '''
+    - Añade esta línea:
+    '''bash
+    0 9 * * 4 [ $(date +\%d) -ge 25 ] && /ruta/a/python /ruta/a/pipeline.py >> /ruta/a/logs/pipeline.log 2>&1
+    '''
+    - Ejecuta
+    Para obtener tus rutas absolutas, ejecuta desde la terminal:
+    '''bash
+    # Ruta de Python en tu entorno conda
+    which python
+
+    # Ruta absoluta del pipeline
+    realpath src/pipeline.py
+
+    # Crea la carpeta de logs si no existe
+    mkdir -p logs
+    realpath logs/pipeline.log
+    '''
+    
 ## Limitaciones
 El análisis realizado está limitado por los datos disponibles y por la estructura de los mismos, si bien el INE cuenta con gran cantidad de datos, no todos cuentan con valores suficientes para construir un modelo y/o unirlos con otros datos.
