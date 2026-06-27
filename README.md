@@ -36,10 +36,10 @@ LightGBM sin los datos correctos tuvo un peor rendimiento que simplemente copiar
 ## Cómo reproducir
 1. Clonar repositorio a tu entorno local.
 2. Crear entorno virtual a partir de environment.yml:
-'''bash
+```bash
 conda env create -f environment.yml
 conda activate nombre_del_entorno
-'''
+```
 3. Ejecutar los Notebooks en orden. En el primer notebook se descarga la data desde la API del INE con los datos necesarios y se agregan a data/raw -en caso de no tener esta carpeta se debe crear-.
 
 ## Configurar pipeline automatizado
