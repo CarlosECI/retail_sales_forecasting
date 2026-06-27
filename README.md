@@ -55,6 +55,11 @@ conda activate nombre_del_entorno
     0 9 * * 4 [ $(date +\%d) -ge 25 ] && /ruta/a/python /ruta/a/pipeline.py >> /ruta/a/logs/pipeline.log 2>&1
     '''
     - Ejecuta
+    - Verifica que cron está configurado correctamente, debe aparecer la línea que configuraste:
+    '''bash
+    crontab -l
+    '''
+
     Para obtener tus rutas absolutas, ejecuta desde la terminal:
     '''bash
     # Ruta de Python en tu entorno conda
@@ -67,6 +72,6 @@ conda activate nombre_del_entorno
     mkdir -p logs
     realpath logs/pipeline.log
     '''
-    
+
 ## Limitaciones
 El análisis realizado está limitado por los datos disponibles y por la estructura de los mismos, si bien el INE cuenta con gran cantidad de datos, no todos cuentan con valores suficientes para construir un modelo y/o unirlos con otros datos.
